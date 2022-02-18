@@ -18,7 +18,6 @@ const CriarNota = navigation => {
   const [nome, setNome] = useState('');
   const [descricao, setDescricao] = useState('');
   const [data, setData] = useState('');
-
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
@@ -26,12 +25,15 @@ const CriarNota = navigation => {
   }, [notes]);
 
   const findNotes = async () => {
-    const result = await AsyncStorage.getItem('notas');
-    if (result !== null) {
-      setNotes(JSON.parse(result));
+    try {
+      const result = await AsyncStorage.getItem('notas');
+      if (result !== null) {
+        setNotes(JSON.parse(result));
+      }
+    } catch (error) {
+      console.warn(error);
     }
   };
-
   async function storeNotes() {
     const dados = {
       id: Date.now(),
@@ -41,10 +43,12 @@ const CriarNota = navigation => {
     };
     const updateNotes = [...notes, dados];
     setNotes(updateNotes);
-    await AsyncStorage.setItem('notas', JSON.stringify(updateNotes));
-
+    try {
+      await AsyncStorage.setItem('notas', JSON.stringify(updateNotes));
+    } catch (error) {
+      console.warn(error);
+    }
     Alert.alert(null, 'Nota criada com sucesso!');
-    navigation.dispatch(StackActions.popToTop());
   }
 
   return (

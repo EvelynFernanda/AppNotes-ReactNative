@@ -141,13 +141,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
-  textNotaAberta: {
+  //Pagina de ver nota criada
+  textHeaderNotaAberta: {
     color: '#FFF',
     fontSize: 20,
-    paddingTop: 20,
-  },
-  buttonVoltar: {
-    flexDirection: 'row',
+    marginTop: 8,
+    marginBottom: 15,
+    textAlign: 'center',
   },
   containerNotas: {
     backgroundColor: '#bbd1fc',
@@ -163,6 +163,28 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     marginTop: 3,
     fontSize: 15,
+  },
+  voltar: {
+    flexDirection: 'row',
+    alignContent: 'flex-start',
+  },
+  editar: {
+    flexDirection: 'row',
+    marginLeft: 170,
+  },
+  containerNotasAbertas: {
+    padding: 20,
+  },
+  textCinza: {
+    fontWeight: 'bold',
+    color: '#8D8D8D',
+  },
+  textNotaAberta: {
+    color: '#000000',
+  },
+  textNotaAbertaGrande: {
+    color: '#000000',
+    fontSize: 20,
   },
 });
 export default styles;

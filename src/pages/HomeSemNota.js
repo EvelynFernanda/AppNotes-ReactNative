@@ -10,16 +10,19 @@ const Home = ({}) => {
   const navigation = useNavigation();
 
   const [notes, setNotes] = useState([]);
-  const isFocused = useIsFocused();
 
   useEffect(() => {
     findNotes();
-  }, [notes, isFocused]);
+  }, [notes]);
 
   const findNotes = async () => {
-    const result = await AsyncStorage.getItem('notas');
-    if (result !== null) {
-      setNotes(JSON.parse(result));
+    try {
+      const result = await AsyncStorage.getItem('notas');
+      if (result !== null) {
+        setNotes(JSON.parse(result));
+      }
+    } catch (error) {
+      console.warn(error);
     }
   };
 
@@ -53,7 +56,7 @@ const Home = ({}) => {
           data={notes}
           numColumns={2}
           columnWrapperStyle={{marginBottom: 15}}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={nota => nota.nome}
           renderItem={({item}) => (
             <NotasCriadas onPress={() => openNote(item)} item={item} />
           )}
@@ -64,3 +67,4 @@ const Home = ({}) => {
 };
 
 export default Home;
+// item => item.id.toString()

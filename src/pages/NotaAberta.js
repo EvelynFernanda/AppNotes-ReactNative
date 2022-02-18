@@ -12,25 +12,28 @@ export default function NotaAberta(props) {
   const {nota} = props.route.params;
 
   const deletarNota = async () => {
-    const result = await AsyncStorage.getItem('notas');
-    let notes = [];
-    if (result !== null) {
-      notes = JSON.parse(result);
-    }
+    try {
+      const result = await AsyncStorage.getItem('notas');
+      let notes = [];
+      if (result !== null) {
+        notes = JSON.parse(result);
+      }
 
-    const newNotes = notes.filter(n => n.id !== nota.id);
-    await AsyncStorage.setItem('notas', JSON.stringify(newNotes));
-    navigation.dispatch(StackActions.popToTop());
+      const newNotes = notes.filter(n => n.id !== nota.id);
+      await AsyncStorage.setItem('notas', JSON.stringify(newNotes));
+    } catch (error) {
+      console.warn(error);
+    }
   };
 
   const deleteAlert = () => {
     Alert.alert(
-      'Alerta',
-      'Tem certeza que deseja excluir esta nota? Essa ação não poderá ser desfeita',
+      'Tem certeza que deseja excluir esta nota?',
+      'Essa ação não poderá ser desfeita',
       [
         {
           text: 'Cancelar',
-          onPress: () => console.log('cancelar'),
+          onPress: () => navigation.navigate('NotasCriadas'),
         },
         {
           text: 'Excluir',
@@ -44,141 +47,52 @@ export default function NotaAberta(props) {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: '#FFF'}}>
       <ScrollView style={{flexGrow: 1}} nestedScrollEnabled={true}>
-        <View>
-          <View style={styles.ButtonVoltar}>
+        <View style={styles.header}>
+          <View style={styles.voltar}>
             <Icon.Button
               name="chevron-left"
+              onPress={() => navigation.navigate('HomeSemNota')}
+              backgroundColor="#0F62FE"
+              size={25}
+            />
+            <Text style={styles.textHeaderNotaAberta}>Voltar</Text>
+          </View>
+          <View style={styles.editar}>
+            <Icon.Button
+              name="trash-2"
               onPress={deleteAlert}
               backgroundColor="#0F62FE"
-              size={30}
+              size={25}
             />
-            <Text style={styles.textNotaAberta}>Voltar</Text>
+            <Text style={styles.textHeaderNotaAberta}>Editar</Text>
           </View>
-          <Icon.Button
-            name="trash-2"
-            onPress={deleteAlert}
-            backgroundColor="#0F62FE"
-            size={30}
-          />
+        </View>
 
-          <View>
-            <Text>Nome </Text>
-            <Text>{nota.nomeNota}</Text>
+        <View style={styles.containerNotasAbertas}>
+          {nota.nome.length > 0 ? (
+            <View>
+              <Text style={styles.textCinza}>Nome </Text>
+              <Text style={styles.textNotaAbertaGrande}>{nota.nome}</Text>
+            </View>
+          ) : null}
 
-            {nota.descricao.length > 0 ? (
-              <View>
-                <Text>Descrição </Text>
-                <Text>{nota.descricao}</Text>
-              </View>
-            ) : null}
+          {nota.descricao.length > 0 ? (
+            <View>
+              <Text style={styles.textCinza}>Descrição </Text>
+              <Text style={styles.textNotaAberta}>{nota.descricao}</Text>
+            </View>
+          ) : null}
 
-            {nota.data.length > 0 ? (
-              <View>
-                <Text>Data </Text>
-                <Text>{nota.data}</Text>
-              </View>
-            ) : null}
-          </View>
+          {nota.data.length > 0 ? (
+            <View>
+              <Text style={styles.textCinza}>Data </Text>
+              <Text style={styles.textNotaAberta}>{nota.data}</Text>
+            </View>
+          ) : null}
         </View>
       </ScrollView>
     </View>
   );
 }
-
-// import React from 'react';
-// import {View, Text, TouchableOpacity, Alert} from 'react-native';
-// import Icon from 'react-native-vector-icons/EvilIcons';
-// import styles from '../components/styles';
-// import {StackActions} from '@react-navigation/native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-// import {useNavigation} from '@react-navigation/native';
-// import {data} from './CriarNota';
-
-// const NotaAberta = ({props}) => {
-//   const navigation = useNavigation();
-//   const {nota} = props.route.params;
-
-//   const deletarNota = async () => {
-//     const result = await AsyncStorage.getItem('notas');
-//     let notes = [];
-//     if (result !== null) {
-//       notes = JSON.parse(result);
-//     }
-
-//     const newNotes = notes.filter(n => n.nome !== nota.nome);
-//     await AsyncStorage.setItem('notas', JSON.stringify(newNotes));
-//     navigation.dispatch(StackActions.popToTop());
-//   };
-
-//   const deleteAlert = () => {
-//     Alert.alert(
-//       'Alerta',
-//       'Tem certeza que deseja excluir esta nota? Essa ação não poderá ser desfeita',
-//       [
-//         {
-//           text: 'Cancelar',
-//           onPress: () => console.log('cancelar'),
-//         },
-//         {
-//           text: 'Excluir',
-//           onPress: deletarNota,
-//         },
-//       ],
-//       {
-//         cancelable: true,
-//       },
-//     );
-//   };
-//   return (
-//     <View>
-//       <View style={styles.header}>
-
-//         <View style={styles.ButtonVoltar}>
-//           <Icon.Button
-//             name="trash"
-//             onPress={() => navigation.navigate('Home')}
-//             backgroundColor="#0F62FE"
-//             size={30}
-//           />
-//           <TouchableOpacity>
-//             <Text style={styles.textNotaAberta}>Editar</Text>
-//           </TouchableOpacity>
-//         </View>
-//       </View>
-//       <Text style={styles.textHeader}>NOME</Text>
-//       <Text style={styles.textHeader}>Sonho de hoje</Text>
-//       <Text style={styles.textHeader}>DESCRIÇÃO</Text>
-//       <Text>
-//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac dolor
-//         consequat, malesuada magna at, rhoncus felis. Duis vitae tortor ante.
-//         Proin aliquet ex pulvinar libero faucibus facilisis. Integer vitae purus
-//         ac quam dictum porttitor.
-//       </Text>
-//       <View style={styles.containerDados}>
-//         <Text style={styles.textoId} numberOfLines={1}>
-//           {`Nota Criada em ${data}`}
-//         </Text>
-
-//         <Text style={styles.textoRotulo}>Nome </Text>
-//         <Text style={styles.textoNomeNota}>{nota.nomeNota}</Text>
-
-//         {nota.descricao.length > 0 ? (
-//           <View>
-//             <Text style={styles.textoRotulo}>Descrição </Text>
-//             <Text style={styles.textoDescricao}>{nota.descricao}</Text>
-//           </View>
-//         ) : null}
-
-//         {nota.data.length > 0 ? (
-//           <View>
-//             <Text style={styles.textoRotulo}>Data </Text>
-//             <Text style={styles.dropbox}>{nota.data}</Text>
-//           </View>
-//         ) : null}
-//       </View>
-//     </View>
-//   );
-// };
-// export default NotaAberta;

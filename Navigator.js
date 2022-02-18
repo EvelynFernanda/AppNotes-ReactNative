@@ -49,7 +49,7 @@ const Navigator = () => {
               headerRight: () => (
                 <Icon.Button
                   name="x"
-                  onPress={() => navigation.navigate('NotasCriadas')}
+                  onPress={() => navigation.navigate('HomeSemNota')}
                   backgroundColor="#0F62FE"
                   size={25}
                 />
