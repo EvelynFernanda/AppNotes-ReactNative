@@ -12,7 +12,6 @@ import styles from '../components/styles';
 import {Picker} from '@react-native-picker/picker';
 import CheckBox from '@react-native-community/checkbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {StackActions} from '@react-navigation/native';
 
 const CriarNota = navigation => {
   const [nome, setNome] = useState('');

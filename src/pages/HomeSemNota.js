@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, Image, FlatList} from 'react-native';
 import styles from '../components/styles';
 import Icon from 'react-native-vector-icons/Feather';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NotasCriadas from './NotasCriadas';
 
@@ -67,4 +67,3 @@ const Home = ({}) => {
 };
 
 export default Home;
-// item => item.id.toString()

@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  ScrollView,
-} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import styles from '../components/styles';
 
-// const windowWidth = Dimensions.get('window').width - 40;
 export default ({item, onPress}) => {
   const {id, nome, descricao, data} = item;
   const dateForm = ms => {

@@ -176,15 +176,18 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   textCinza: {
+    fontSize: 13,
     fontWeight: 'bold',
     color: '#8D8D8D',
+    marginTop: 15,
   },
   textNotaAberta: {
     color: '#000000',
+    fontSize: 17,
   },
   textNotaAbertaGrande: {
     color: '#000000',
-    fontSize: 20,
+    fontSize: 23,
   },
 });
 export default styles;

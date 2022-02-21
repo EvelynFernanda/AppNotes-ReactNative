@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Text, ScrollView, Alert} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {StackActions} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import styles from '../components/styles';
@@ -33,7 +32,7 @@ export default function NotaAberta(props) {
       [
         {
           text: 'Cancelar',
-          onPress: () => navigation.navigate('NotasCriadas'),
+          onPress: () => navigation.navigate('HomeSemNota'),
         },
         {
           text: 'Excluir',
@@ -73,21 +72,21 @@ export default function NotaAberta(props) {
         <View style={styles.containerNotasAbertas}>
           {nota.nome.length > 0 ? (
             <View>
-              <Text style={styles.textCinza}>Nome </Text>
+              <Text style={styles.textCinza}>NOME </Text>
               <Text style={styles.textNotaAbertaGrande}>{nota.nome}</Text>
             </View>
           ) : null}
 
           {nota.descricao.length > 0 ? (
             <View>
-              <Text style={styles.textCinza}>Descrição </Text>
+              <Text style={styles.textCinza}>DESCRIÇÃO </Text>
               <Text style={styles.textNotaAberta}>{nota.descricao}</Text>
             </View>
           ) : null}
 
           {nota.data.length > 0 ? (
             <View>
-              <Text style={styles.textCinza}>Data </Text>
+              <Text style={styles.textCinza}>DATA</Text>
               <Text style={styles.textNotaAberta}>{nota.data}</Text>
             </View>
           ) : null}
