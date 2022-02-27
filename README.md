@@ -2,11 +2,11 @@
 
 ## Sobre
 
-Após o treinamento de React Native que tivemos na IBM, foi nos passado para desenvolver um aplicativo de notas, onde utilizei React Navigation e Async Storage, o app ainda esta em andamento.
+Após o treinamento de React Native que tivemos na IBM, foi nos passado para desenvolver um aplicativo de notas, onde utilizei React Navigation e Async Storage.
 
-## Realizado até o momento
+## App:
 
-- Tela sem notas criadas
+- Tela inicial sem notas criadas
 
 <img width="331" src="src/img/tela1.png">
 
@@ -26,6 +26,4 @@ Após o treinamento de React Native que tivemos na IBM, foi nos passado para des
 
 <img width="331" src="src/img/tela5.png">
 
-
----
 
