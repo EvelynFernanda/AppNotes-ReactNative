@@ -2,7 +2,13 @@
 
 ## Sobre
 
-Após o treinamento de React Native que tivemos na IBM, foi nos passado para desenvolver um aplicativo de notas, onde utilizei React Navigation e Async Storage.
+Após o treinamento de React Native que tivemos na IBM, foi nos passado para desenvolver um aplicativo de notas, onde utilizei:
+- React Navigation 
+- Async Storage
+- React Native CLI
+- Emulador Android Studio
+- IDE: Visual Studio Code
+
 
 ## App:
 
